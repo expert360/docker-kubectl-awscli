@@ -30,6 +30,6 @@ else
   LEVEL="info";
 fi
 
-postdata='{ "access_token" : "'${TOKEN}'", "data" : { "environment" : "production", "level" : "'${LEVEL}'", "body" : { "message" : { "body" : "'${MESSAGE}'" } } }';
+postdata='{ "access_token" : "'${TOKEN}'", "data" : { "environment" : "production", "level" : "'${LEVEL}'", "body" : { "message" : { "body" : "'${MESSAGE}'" } } } }';
 
-curl --request POST --url https://api.rollbar.com/api/1/item/ --data "${postdata}"
+curl --verbose --request POST --url https://api.rollbar.com/api/1/item/ --data "${postdata}"
