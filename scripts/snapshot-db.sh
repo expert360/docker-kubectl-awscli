@@ -5,9 +5,9 @@ set -eou pipefail
 finish() {
   code=$?
   if [ "${code}" == 0 ]; then
-    rollbar.sh -s -m "Successful Snapshot created!" -r $ROLLBAR_TOKEN;
+    rollbar.sh -l "info" -m "Successful Snapshot created!" -r $ROLLBAR_TOKEN;
   else
-    rollbar.sh -f -m "Snapshotting Failed!" -r $ROLLBAR_TOKEN;
+    rollbar.sh -l "error" -m "Snapshotting Failed!" -r $ROLLBAR_TOKEN;
   fi
   mysqladmin -h 127.0.0.1 -u root shutdown
   exit $code

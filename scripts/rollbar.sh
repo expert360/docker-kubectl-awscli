@@ -3,12 +3,11 @@ set -eou pipefail
 
 SUCCESS=false
 
-while getopts "sfm:r:" option
+while getopts "l:m:r:" option
 do
 case "${option}"
 in
-s) SUCCESS=true;;
-f) SUCCESS=false;;
+l) LEVEL=${OPTARG};;
 m) MESSAGE=${OPTARG};;
 r) TOKEN=${OPTARG};;
 esac
@@ -24,10 +23,9 @@ if [ -z "${MESSAGE}" ]; then
   exit 1;
 fi
 
-if [ "${SUCCESS}" == true ]; then
-  LEVEL="error";
-else
-  LEVEL="info";
+if [ -z "${LEVEL}" ]; then
+  echo "Missing Level";
+  exit 1;
 fi
 
 postdata='{ "access_token" : "'${TOKEN}'", "data" : { "environment" : "production", "level" : "'${LEVEL}'", "body" : { "message" : { "body" : "'${MESSAGE}'" } } } }';
