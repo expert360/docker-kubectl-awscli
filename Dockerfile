@@ -19,6 +19,9 @@ RUN apk update && \
 # Install kubectl
 RUN curl -sL https://storage.googleapis.com/kubernetes-release/release/v1.18.5/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl && chmod a+x /usr/local/bin/kubectl
 
+# Install a specific version of kustomize that we use
+RUN curl -sL https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64 -o /usr/local/bin/kustomize && chmod 755 /usr/local/bin/kustomize
+
 # Install aws-iam-authenticator
 RUN curl -sL https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.3.0/heptio-authenticator-aws_0.3.0_linux_amd64 -o /usr/local/bin/aws-iam-authenticator && chmod a+x /usr/local/bin/aws-iam-authenticator
 
