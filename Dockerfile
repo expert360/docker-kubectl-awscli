@@ -13,6 +13,7 @@ RUN apk update && \
   grep \
   busybox-extras \
   xz \
+  elixir \
   && update-ca-certificates \
   && rm /usr/bin/[[
 
